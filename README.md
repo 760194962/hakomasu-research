@@ -1,7 +1,7 @@
-# THE IDOLM@STER（Xbox 360）存档研究
+# THE IDOLM@STER（Xbox 360）研究
 
 对象：THE IDOLM@STER，Xbox 360 版，Title ID `4E4D07DB`。
-目的：修改胜率、补全配饰，以及为真机（RGH）解锁成就准备存档。验证环境为 Xenia Canary 和 Horizon。
+目的：研究存档格式和游戏逻辑。已做的有修改胜率、补全配饰、为真机（RGH）解锁成就准备存档，以及审核出现规则的反编译。验证环境为 Xenia Canary 和 Horizon。
 
 ## 已确认
 
