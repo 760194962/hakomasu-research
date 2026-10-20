@@ -23,6 +23,7 @@
 - [docs/achievements.md](docs/achievements.md)：奖杯顺序和触发方式
 - [docs/xex-notes.md](docs/xex-notes.md)：xex 解包与函数位置
 - [docs/audition.md](docs/audition.md)：审核列表的数据格式、栏位刷新规则和概率（IDOL VISION ver4 约 1%）
+- [docs/week-cycle.md](docs/week-cycle.md)：周循环、推进周数的代码路径，以及"一周内课程+营业"的补丁可行性（未实测）
 - [docs/just-appeal.md](docs/just-appeal.md)：JA 判定窗口、得分效果、各曲 BPM
 
 ## 未确认 / 未完成
