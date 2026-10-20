@@ -14,6 +14,7 @@
 - **Unit 槽**：可以整块复制到空槽，改偶像 ID 和名字后能正常列出、推进和存档；前提是把"Unit 数"（0x39D0D0）一起改。
 - **default.xex**：已解密解压，存档标签字符串和部分读写函数已定位。
 - **审核列表**：审核表在 `auditionlist.bxr` 里，栏位是随机刷新的。IDOL VISION 属于 c 类栏位里 20% 的替换，其中 ver4（奖励 7 万粉丝）在一次刷新里约 1%，详见 [docs/audition.md](docs/audition.md)。概率来自反编译，没有在游戏里实测。
+- **Just Appeal**：按键时刻离拍点在 ±12% 拍长以内即为 JA，窗口是 `battle.bna` 里的固定值，Tension 不参与；JA 让单次 Appeal 的基础值 +10（上限 100），详见 [docs/just-appeal.md](docs/just-appeal.md)。来自反编译，没有在游戏里实测。
 
 详细内容：
 
@@ -22,6 +23,7 @@
 - [docs/achievements.md](docs/achievements.md)：奖杯顺序和触发方式
 - [docs/xex-notes.md](docs/xex-notes.md)：xex 解包与函数位置
 - [docs/audition.md](docs/audition.md)：审核列表的数据格式、栏位刷新规则和概率（IDOL VISION ver4 约 1%）
+- [docs/just-appeal.md](docs/just-appeal.md)：JA 判定窗口、得分效果、各曲 BPM
 
 ## 未确认 / 未完成
 
