@@ -13,6 +13,7 @@
 - **成就**：奖杯在存档里的位置和顺序已确认；成就在事件点发放，清空奖杯记录后会重新发放。10 个成就都在模拟器上拿到过。
 - **Unit 槽**：可以整块复制到空槽，改偶像 ID 和名字后能正常列出、推进和存档；前提是把"Unit 数"（0x39D0D0）一起改。
 - **default.xex**：已解密解压，存档标签字符串和部分读写函数已定位。
+- **审核列表**：审核表在 `auditionlist.bxr` 里，栏位是随机刷新的。IDOL VISION 属于 c 类栏位里 20% 的替换，其中 ver4（奖励 7 万粉丝）在一次刷新里约 1%，详见 [docs/audition.md](docs/audition.md)。概率来自反编译，没有在游戏里实测。
 
 详细内容：
 
@@ -20,6 +21,7 @@
 - [docs/accessories.md](docs/accessories.md)：配饰/衣装 ID 表、DLC 核对、剩余"？"
 - [docs/achievements.md](docs/achievements.md)：奖杯顺序和触发方式
 - [docs/xex-notes.md](docs/xex-notes.md)：xex 解包与函数位置
+- [docs/audition.md](docs/audition.md)：审核列表的数据格式、栏位刷新规则和概率（IDOL VISION ver4 约 1%）
 
 ## 未确认 / 未完成
 
@@ -41,6 +43,7 @@ python3 tools/gamedata.py fixcrc gamedata                  # 只重算 CRC
 python3 tools/stfs_gamedata.py extract 存档包 gamedata      # 从真机存档包取出
 python3 tools/stfs_gamedata.py inject 存档包 gamedata 输出包 # 原位写回，之后在 Horizon 里 Rehash + Resign
 python3 tools/xex_decrypt.py default.xex default.pe --key <零售 XEX 密钥>
+python3 tools/xex_decrypt.py default.xex --scan <内嵌密钥的文件>   # 在模拟器 exe 里找密钥，只打印通过 PE 签名校验的候选
 ```
 
 改存档前请先备份。本仓库不包含游戏本体文件和密钥。
