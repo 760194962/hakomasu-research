@@ -5,9 +5,11 @@ The base save was removed from the tree; get it with
   git show 5321443:saves/achievement-set/gamedata > base_gamedata
 
 Usage:
-  python3 unitset.py BASE_GAMEDATA MAIN_OUT SHIN_OUT
+  python3 unitset.py BASE_GAMEDATA MAIN_OUT COMBINED_OUT SHIN_OUT
 
 MAIN_OUT: 9 units, each set up so that one achievement unlocks through normal play.
+COMBINED_OUT: same, but the 10アイドル unit also has the last song, so one ending
+          gives 10アイドル and 16ソング together.
 SHIN_OUT: 1 unit for 真アイドルマスター (needs producer level 8 and all 10 idol counters,
           which would interfere with the main save; see docs/achievements.md).
 
@@ -103,7 +105,7 @@ def set_trophies(g, ids):
     put_i32(g, TROPHY_COUNT, len(ids))
 
 
-def build_main(base):
+def build_main(base, combined=False):
     g = bytearray(base)
     for k in range(SLOTS):
         copy_slot(g, base, k, EMPTY_SLOT)
@@ -118,8 +120,10 @@ def build_main(base):
     assert get_i32(g, r + 0x10) == 3
     put_i32(g, r + 0x10, AMI)
     # 16ソング: the oldest song of this unit becomes the one song never retired with
-    r = songs(g, 7)[-1]
-    put_i32(g, r + 0x10, LAST_SONG)
+    song_slots = (7, 8) if combined else (7,)
+    for k in song_slots:
+        r = songs(g, k)[-1]
+        put_i32(g, r + 0x10, LAST_SONG)
 
     p = i32s(g, PEVA, 24)
     p[0] = p[1] = 99                                      # A100: passes >= 100
@@ -139,7 +143,7 @@ def build_main(base):
 
     # the target song and idol must not be in any other unit
     for k in range(len(MAIN)):
-        assert (LAST_SONG in song_ids(g, k)) == (k == 7), k
+        assert (LAST_SONG in song_ids(g, k)) == (k in song_slots), k
         assert (AMI in [get_i32(g, r + 0x10) for r in idol_tags(g, k)]) == (k == 8), k
     fix_crc(g)
     return g
@@ -161,10 +165,11 @@ def build_shin(base):
 
 
 def main():
-    if len(sys.argv) != 4:
+    if len(sys.argv) != 5:
         sys.exit(__doc__)
     base = open(sys.argv[1], 'rb').read()
-    for path, g in ((sys.argv[2], build_main(base)), (sys.argv[3], build_shin(base))):
+    for path, g in ((sys.argv[2], build_main(base)), (sys.argv[3], build_main(base, combined=True)),
+                    (sys.argv[4], build_shin(base))):
         open(path, 'wb').write(g)
         print('written', path)
 

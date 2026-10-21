@@ -43,7 +43,7 @@ python3 tools/gamedata.py info gamedata                    # 查看摘要
 python3 tools/gamedata.py winrate100 gamedata out          # 胜率 100%（制作人和各 Unit）
 python3 tools/gamedata.py rename gamedata out アイマス      # 改制作人名
 python3 tools/gamedata.py fixcrc gamedata                  # 只重算 CRC
-python3 tools/unitset.py 基础存档 main输出 shin输出         # 生成一 Unit 一成就存档
+python3 tools/unitset.py 基础存档 main输出 combined输出 shin输出  # 生成一 Unit 一成就存档
 python3 tools/stfs_gamedata.py extract 存档包 gamedata      # 从真机存档包取出
 python3 tools/stfs_gamedata.py inject 存档包 gamedata 输出包 # 原位写回，之后在 Horizon 里 Rehash + Resign
 python3 tools/xex_decrypt.py default.xex default.pe --key <零售 XEX 密钥>

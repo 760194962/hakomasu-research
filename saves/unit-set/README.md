@@ -1,18 +1,19 @@
-# 一 Unit 一成就存档（未测试）
+# 一 Unit 一成就存档（部分实测）
 
 **状态：只在 Xenia 上实测了 M100 和 C100**（见下表），其余来自反编译（见 [docs/achievements.md](../../docs/achievements.md)）。做法是从游戏实际存过的存档整槽复制，再改偶像和计数。
 
-由 `tools/unitset.py` 从以前的一体化存档生成（该存档已从仓库删除，在历史里还能取到），两个文件的 CRC 都已更新：
+由 `tools/unitset.py` 从以前的一体化存档生成（该存档已从仓库删除，在历史里还能取到），三个文件的 CRC 都已更新：
 
 ```
 git show 5321443:saves/achievement-set/gamedata > base_gamedata
-python3 tools/unitset.py base_gamedata saves/unit-set/main/gamedata saves/unit-set/shin/gamedata
+python3 tools/unitset.py base_gamedata saves/unit-set/main/gamedata saves/unit-set/main-combined/gamedata saves/unit-set/shin/gamedata
 ```
 
-| 文件 | SHA-1 |
-|---|---|
-| `main/gamedata` | `dd0bba318c0bd83188a9f4e90acfff891ec05f7b` |
-| `shin/gamedata` | `7646b8a88e73e6e6aa20755ae6f9c7c650dc5fc4` |
+| 文件 | 用途 | SHA-1 |
+|---|---|---|
+| `main/gamedata` | 9 个 Unit 各管一个成就 | `dd0bba318c0bd83188a9f4e90acfff891ec05f7b` |
+| `main-combined/gamedata` | 同 main，但 10アイドル 和 16ソング 一次结局一起拿（给懒得分开打的人） | `679b9e1d8aba2cb1b4eb1457c93b89267b84d6b0` |
+| `shin/gamedata` | 真アイドルマスター 专用 | `7646b8a88e73e6e6aa20755ae6f9c7c650dc5fc4` |
 
 ## main：9 个 Unit，各管一个成就
 
@@ -40,13 +41,20 @@ python3 tools/unitset.py base_gamedata saves/unit-set/main/gamedata saves/unit-s
 
 ## 互相影响（游戏规则决定，避不开）
 
-- A100、C100、L100、M100 的计数是**制作人的**，不分 Unit。在任何槽里赢试镜、做好课程/营业、获得回忆，都会推进到 100。
+- A100、C100、L100、M100 的计数是**制作人的**，不分 Unit。在任何槽里赢试镜、做好课程/营业、获得回忆，都会推进到 100。槽 0~3 只是起名提示，想"只拿 A100"就在那一周别做别的。
 - **C100 会顺带 M100**：营业的 Communication 连 Normal 都给回忆（实测），所以拿 C100 的那次营业当晚会先解锁 M100（如果还没有），下一周夜间再解锁 C100。Normal 不推进 C100（实测），所以只想拿 M100 就打一次 Normal。
-- **休息周没有夜间事务所**：休息走 OffSchedule 直接周结算，不经过夜间判定，所以休息的那一周不会发放任何夜间成就。等成就的那一周要做课程、营业或试镜。槽 0~3 只是起名提示，想"只拿 A100"就在那一周别做别的。
+- **休息周没有夜间事务所**：休息走 OffSchedule 直接周结算，不经过夜间判定，所以休息的那一周不会发放任何夜间成就。等成就的那一周要做课程、营业或试镜。
 - 在任何 S/A 级的槽里巨蛋成功都会给 ベストエンディング，不只是槽 6。
 - 槽 7、8 打到结局时，如果巨蛋成功也会顺带 ベストエンディング；在槽 7、8 里合格 SUPER IDOL 也会顺带 スーパーアイドル。
 - 槽 7 和槽 8 互不影响：缺的歌只在槽 7，缺的偶像只在槽 8。
 - 等级 7 一次结局最多升到 8，所以 main 里拿不到 真アイドルマスター，也不会误触。
+
+## main-combined：10アイドル + 16ソング 一次拿
+
+和 main 只差一处：槽 8（１０アイドル）最早学的那首歌（ID 3）也改成了 ID 5。所以槽 8 打到结局时同时补齐 10 人和 16 首，一次给 10アイドル 和 16ソング。
+
+- 槽 7 仍然只给 16ソング；先打了槽 7 的话，槽 8 就只给 10アイドル。
+- 其余槽和 main 完全一样。
 
 ## shin：真アイドルマスター 专用
 
@@ -57,8 +65,8 @@ python3 tools/unitset.py base_gamedata saves/unit-set/main/gamedata saves/unit-s
 
 ## 已知风险
 
-- 9 个槽里同一位偶像会出现在多个 Unit 里（游戏正常流程不允许），读档时会不会检查不知道。
-- Unit 名用的是全角数字和字母，游戏字体里有没有这些字形没确认。
+- 9 个槽里同一位偶像会出现在多个 Unit 里（游戏正常流程不允许）。Xenia 上槽 1、槽 4 能正常读档推进，其余槽只确认了能列出来。
+- Unit 名用的是全角数字和字母，Xenia 上显示正常。
 - 换过偶像的槽，交流剧情可能对不上。
 - `0xB450` 起的"当前 Unit 工作副本"没有改，沿用原存档。
 
@@ -66,5 +74,5 @@ python3 tools/unitset.py base_gamedata saves/unit-set/main/gamedata saves/unit-s
 
 - 模拟器：放到 Xenia 的 `content/<profile>/4E4D07DB/00000001/savedata/` 替换 `gamedata`，先备份原存档。
 - 真机：`python3 tools/stfs_gamedata.py inject <你的存档包> gamedata <输出包>`，然后在 Horizon 里 Rehash + Resign。
-- main 和 shin 是两个完整的 `gamedata`，要拿 真アイドルマスター 时换成 shin，拿完再换回 main。
+- main（或 main-combined）和 shin 都是完整的 `gamedata`，要拿 真アイドルマスター 时换成 shin，拿完再换回来。
 - 夜间事务所结束后游戏会问要不要存档。成就在这之前就已经发放，选不存档，存档就还停在"差一次"的状态，可以反复试。
