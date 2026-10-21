@@ -29,7 +29,8 @@
 ## 未确认 / 未完成
 
 - 一体化成就解锁存档 [saves/achievement-set](saves/achievement-set/) 还没有测试。
-- 10アイドル、16ソング、4シーズン、真アイドルマスター 的确切触发节点没有记录。
+- 一 Unit 一成就存档 [saves/unit-set](saves/unit-set/)（9 个槽各管一个成就，真アイドルマスター 单独一个文件）还没有测试。
+- 成就发放点已经反编译出来（见 [docs/achievements.md](docs/achievements.md)），但没有在游戏里逐条复现；季节祭典营业"成功"的条件没有确认。
 - Unit 槽里周数、等级等推进字段没有逐个解出来。
 - PEVA 部分下标的含义只是推测。
 - TU 补丁没有分析。
@@ -43,6 +44,7 @@ python3 tools/gamedata.py info gamedata                    # 查看摘要
 python3 tools/gamedata.py winrate100 gamedata out          # 胜率 100%（制作人和各 Unit）
 python3 tools/gamedata.py rename gamedata out アイマス      # 改制作人名
 python3 tools/gamedata.py fixcrc gamedata                  # 只重算 CRC
+python3 tools/unitset.py 基础存档 main输出 shin输出         # 生成一 Unit 一成就存档
 python3 tools/stfs_gamedata.py extract 存档包 gamedata      # 从真机存档包取出
 python3 tools/stfs_gamedata.py inject 存档包 gamedata 输出包 # 原位写回，之后在 Horizon 里 Rehash + Resign
 python3 tools/xex_decrypt.py default.xex default.pe --key <零售 XEX 密钥>

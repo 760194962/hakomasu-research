@@ -59,8 +59,11 @@ def info(g):
     print('accessory+costume records', n, '(accessories %d, costumes %d)'
           % (sum(1 for i in ids if i < 182 or i > 238), sum(1 for i in ids if 182 <= i <= 238)))
     t = u32(g, TROPHY_COUNT)
-    got = [TROPHIES[k] for k in range(10) if g[TROPHY_BASE + k * 0x20:TROPHY_BASE + k * 0x20 + 8] == b'PTRP TAG']
+    # records are in acquisition order; the trophy ID (1-10) is the data word at +0x10
+    got = [TROPHIES[u32(g, TROPHY_BASE + k * 0x20 + 0x10) - 1] for k in range(min(t, 10))
+           if g[TROPHY_BASE + k * 0x20:TROPHY_BASE + k * 0x20 + 8] == b'PTRP TAG']
     print('trophies', t, got)
+    print('4 seasons mask (PEVA[19]) 0x%02X / 0xFF' % (p[19] & 0xFF))
     print('units listed', u32(g, UNIT_COUNT))
     for k in range(SLOTS):
         s = bytes(g[SLOT_BASE + k * SLOT_SIZE:SLOT_BASE + (k + 1) * SLOT_SIZE])
