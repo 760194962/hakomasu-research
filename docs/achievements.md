@@ -142,10 +142,6 @@ e1~e5 在 `auditionlist.bxr` 里的记录顺序是 33~37，`week` 字段都是 1
 | M100 | 达成的翌週夜间 | 计数在获得回忆时立即增加，**当周夜间**解锁（Xenia 实测：营业 Communication 评价 Normal 也给了 1 个回忆，当晚解锁） |
 | 真アイドルマスター | 升格为真アイマス时 | 一致（等级 8、总评分 ≥ 75，并且要满足 10アイドル 的条件） |
 
-## 未测试：一体化解锁存档
+## 一 Unit 一成就存档（部分实测）
 
-`saves/achievement-set/gamedata`，说明见该目录的 README。
-
-## 未测试：一 Unit 一成就存档
-
-`saves/unit-set/`，由 `tools/unitset.py` 从上面的一体化存档生成，说明见该目录的 README。
+`saves/unit-set/`，由 `tools/unitset.py` 生成，说明见该目录的 README。

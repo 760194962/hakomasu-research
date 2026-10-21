@@ -1,11 +1,12 @@
 # 一 Unit 一成就存档（未测试）
 
-**状态：没有在模拟器或真机上测试过。** 所有设定来自反编译（见 [docs/achievements.md](../../docs/achievements.md)），做法和 [achievement-set](../achievement-set/) 一样是整槽复制、改偶像和计数。
+**状态：只在 Xenia 上实测了 M100 和 C100**（见下表），其余来自反编译（见 [docs/achievements.md](../../docs/achievements.md)）。做法是从游戏实际存过的存档整槽复制，再改偶像和计数。
 
-由 `tools/unitset.py` 从 `saves/achievement-set/gamedata` 生成，两个文件的 CRC 都已更新：
+由 `tools/unitset.py` 从以前的一体化存档生成（该存档已从仓库删除，在历史里还能取到），两个文件的 CRC 都已更新：
 
 ```
-python3 tools/unitset.py saves/achievement-set/gamedata saves/unit-set/main/gamedata saves/unit-set/shin/gamedata
+git show 5321443:saves/achievement-set/gamedata > base_gamedata
+python3 tools/unitset.py base_gamedata saves/unit-set/main/gamedata saves/unit-set/shin/gamedata
 ```
 
 | 文件 | SHA-1 |

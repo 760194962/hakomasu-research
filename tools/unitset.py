@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Build the one-achievement-per-unit saves from saves/achievement-set/gamedata.
+"""Build the one-achievement-per-unit saves from the old all-in-one save.
+
+The base save was removed from the tree; get it with
+  git show 5321443:saves/achievement-set/gamedata > base_gamedata
 
 Usage:
   python3 unitset.py BASE_GAMEDATA MAIN_OUT SHIN_OUT

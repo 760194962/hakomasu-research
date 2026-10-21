@@ -28,8 +28,7 @@
 
 ## 未确认 / 未完成
 
-- 一体化成就解锁存档 [saves/achievement-set](saves/achievement-set/) 还没有测试。
-- 一 Unit 一成就存档 [saves/unit-set](saves/unit-set/)（9 个槽各管一个成就，真アイドルマスター 单独一个文件）还没有测试。
+- 一 Unit 一成就存档 [saves/unit-set](saves/unit-set/)（9 个槽各管一个成就，真アイドルマスター 单独一个文件）只实测了 M100、C100。
 - 成就发放点已经反编译出来（见 [docs/achievements.md](docs/achievements.md)），但没有在游戏里逐条复现；季节祭典营业"成功"的条件没有确认。
 - Unit 槽里周数、等级等推进字段没有逐个解出来。
 - PEVA 部分下标的含义只是推测。
