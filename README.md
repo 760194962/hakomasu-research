@@ -14,6 +14,7 @@
 - **Unit 槽**：可以整块复制到空槽，改偶像 ID 和名字后能正常列出、推进和存档；前提是把"Unit 数"（0x39D0D0）一起改。
 - **default.xex**：已解密解压，存档标签字符串和部分读写函数已定位。
 - **审核列表**：审核表在 `auditionlist.bxr` 里，栏位是随机刷新的。IDOL VISION 属于 c 类栏位里 20% 的替换，其中 ver4（奖励 7 万粉丝）在一次刷新里约 1%，详见 [docs/audition.md](docs/audition.md)。概率来自反编译，没有在游戏里实测。
+- **一 Unit 一成就存档**：[saves/unit-set](saves/unit-set/)，9 个槽各差一步拿一个成就，真アイドルマスター 单独一个文件。实机（RGH）上用它解锁了全部 10 个成就（スーパーアイドル、ベストED 两个槽没单独测，那个档案原来就有）。
 - **Just Appeal**：按键时刻离拍点在 ±12% 拍长以内即为 JA，窗口是 `battle.bna` 里的固定值，Tension 不参与；JA 让单次 Appeal 的基础值 +10（上限 100），详见 [docs/just-appeal.md](docs/just-appeal.md)。来自反编译，没有在游戏里实测。
 
 详细内容：
@@ -28,8 +29,7 @@
 
 ## 未确认 / 未完成
 
-- 一 Unit 一成就存档 [saves/unit-set](saves/unit-set/)（9 个槽各管一个成就，真アイドルマスター 单独一个文件）只实测了 M100、C100。
-- 成就发放点已经反编译出来（见 [docs/achievements.md](docs/achievements.md)），但没有在游戏里逐条复现；季节祭典营业"成功"的条件没有确认。
+- 成就发放点已经反编译出来（见 [docs/achievements.md](docs/achievements.md)），并用一 Unit 一成就存档复现了 8 个；スーパーアイドル、ベストED 没有单独复现，季节祭典营业"成功"的条件没有确认。
 - Unit 槽里周数、等级等推进字段没有逐个解出来。
 - PEVA 部分下标的含义只是推测。
 - TU 补丁没有分析。
